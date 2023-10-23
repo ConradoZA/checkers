@@ -1,0 +1,8 @@
+{
+  "404": {
+    "message": "Sorry, an unexpected error has occurred.",
+    "goBack": "Go Back",
+    "goHome": "Return Home",
+    "unknown": "Unknown error."
+  }
+}

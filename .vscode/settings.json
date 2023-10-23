@@ -1,0 +1,10 @@
+{
+  // asociar archivos .css con la nomenclatura tailwind para evitar "unknown at rule"
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  // etiquetas html "linkadas": se edita el final de la etiqueta cuando editas el inicio
+  "editor.linkedEditing": true,
+  // descargar json schemas
+  "json.schemaDownload.enable": true
+}

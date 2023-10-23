@@ -1,0 +1,8 @@
+{
+  "404": {
+    "message": "Lo sentimos, ha ocurrido un error.",
+    "goBack": "Atrás",
+    "goHome": "Ir al inicio",
+    "unknown": "Error desconocido."
+  }
+}
