@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { useTheme } from '../../hooks/useTheme';
 
 const ThemeToggle: React.FC = () => {
@@ -23,7 +23,6 @@ const ThemeToggle: React.FC = () => {
     </svg>
   );
 
-  const switchToggle = useRef<HTMLDivElement | null>(null);
   const theme = useTheme();
 
   return (
@@ -36,7 +35,6 @@ const ThemeToggle: React.FC = () => {
       onClick={() => theme.changeTheme()}
     >
       <div
-        ref={switchToggle}
         className='tw-relative tw-h-6 tw-w-6
         -tw-translate-x-2 tw-transform tw-rounded-full
         tw-bg-yellow-500 tw-p-1 tw-text-black
