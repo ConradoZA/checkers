@@ -4,5 +4,8 @@
     "goBack": "Go Back",
     "goHome": "Return Home",
     "unknown": "Unknown error."
+  },
+  "header": {
+    "checkers": "Checkers"
   }
 }

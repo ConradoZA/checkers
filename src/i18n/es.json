@@ -4,5 +4,8 @@
     "goBack": "Atrás",
     "goHome": "Ir al inicio",
     "unknown": "Error desconocido."
+  },
+  "header": {
+    "checkers": "Damas"
   }
 }

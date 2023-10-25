@@ -26,11 +26,7 @@ const LangToggle: React.FC = () => {
   };
 
   return (
-    <button
-      className='tw-m-2 tw-mb-6
-      tw-flex tw-items-center'
-      onClick={() => switchLang()}
-    >
+    <button className='tw-m-2 tw-flex tw-items-center' onClick={() => switchLang()}>
       <span className='tw-mr-1 tw-text-xs tw-font-semibold'>Español</span>
       <div className='tw-h-4 tw-w-8 tw-rounded-full tw-bg-gray-500 tw-p-0.5'>
         <div
