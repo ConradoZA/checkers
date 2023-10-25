@@ -5,9 +5,9 @@ import { useTranslate } from '../hooks/useTranslate';
 const NotFound: React.FC = () => {
   const navigate = useNavigate();
   const error = useRouteError();
+  const translator = useTranslate();
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const wording: Record<string, string> = useTranslate().getSection('404');
+  const wording: Record<string, string> = translator.getSection('404', translator.getLang());
 
   let errorMessage: string;
 
