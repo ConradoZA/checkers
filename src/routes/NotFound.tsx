@@ -18,16 +18,16 @@ const NotFound: React.FC = () => {
   } else if (typeof error === 'string') {
     errorMessage = error;
   } else {
-    console.error(error);
+    console.error('error:', error);
     errorMessage = wording.unknown;
   }
 
   return (
     <div
       data-testid='error-page'
-      className='tw-flex tw-h-screen tw-flex-col tw-items-center tw-gap-8 tw-bg-black tw-bg-[url("ur.jpg")] tw-bg-cover tw-bg-bottom tw-bg-no-repeat 2xl:tw-bg-contain'
+      className='tw-flex tw-h-screen tw-flex-col tw-items-center tw-gap-6 tw-bg-[#2B2300] tw-bg-[url("/ur.webp")] tw-bg-cover tw-bg-bottom tw-bg-no-repeat 2xl:tw-bg-contain'
     >
-      <h1 className='tw-mt-12 tw-text-4xl tw-font-bold tw-text-slate-100'>Oops!</h1>
+      <h1 className='tw-mt-16 tw-text-4xl tw-font-bold tw-text-slate-100'>Oops!</h1>
       <p className='tw-text-slate-100'>{wording.message}</p>
       <p className='tw-text-slate-400'>
         <i data-testid='error-message'>{errorMessage}</i>
