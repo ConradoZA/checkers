@@ -1,20 +1,27 @@
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 
-const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'tw-dark' : 'tw-light';
+const Themes = ['tw-dark', 'tw-light'] as const;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const useTheme = create<Record<string, any>>()(
+interface ThemeSlice {
+  theme: (typeof Themes)[number];
+  changeTheme: () => void;
+  getTheme: () => (typeof Themes)[number];
+}
+
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? Themes[0] : Themes[1];
+
+export const useTheme = create<ThemeSlice>()(
   immer((set, get) => ({
     theme,
-    changeTheme: (): void =>
+    changeTheme: () =>
       set((state) => {
-        if (get().theme === 'tw-light') {
-          state.theme = 'tw-dark';
+        if (get().theme === Themes[1]) {
+          state.theme = Themes[0];
         } else {
-          state.theme = 'tw-light';
+          state.theme = Themes[1];
         }
       }),
-    getTheme: (): string => get().theme,
+    getTheme: () => get().theme,
   })),
 );
