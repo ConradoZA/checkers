@@ -1,6 +1,7 @@
 import Home from './routes/Home';
 import NotFound from './routes/NotFound';
 import React from 'react';
+import TheFooter from './components/the-footer/TheFooter';
 import TheHeader from './components/the-header/TheHeader';
 import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { useTheme } from './hooks/useTheme';
@@ -10,6 +11,7 @@ const Layout = () => {
     <>
       <TheHeader />
       <Outlet />
+      <TheFooter />
     </>
   );
 };
@@ -28,6 +30,12 @@ const App: React.FC = () => {
         {
           path: '/checkers',
           element: <div>Hola</div>,
+        },
+        {
+          path: '/privacy',
+          element: (
+            <div className='tw-h-screen tw-w-screen tw-bg-amber-50 dark:tw-bg-stone-700'>Hola</div>
+          ),
         },
       ],
     },

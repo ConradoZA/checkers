@@ -6,6 +6,10 @@
     "unknown": "Error desconocido."
   },
   "header": {
-    "checkers": "Damas"
+    "checkers": "Damas",
+    "home": "Inicio"
+  },
+  "footer": {
+    "privacy": "Privacidad"
   }
 }

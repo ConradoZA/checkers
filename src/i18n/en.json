@@ -6,6 +6,10 @@
     "unknown": "Unknown error."
   },
   "header": {
-    "checkers": "Checkers"
+    "checkers": "Checkers",
+    "home": "Home"
+  },
+  "footer": {
+    "privacy": "Privacy"
   }
 }
