@@ -1,3 +1,4 @@
+import Checkers from './routes/Checkers';
 import Home from './routes/Home';
 import NotFound from './routes/NotFound';
 import React from 'react';
@@ -29,7 +30,7 @@ const App: React.FC = () => {
         },
         {
           path: '/checkers',
-          element: <div>Hola</div>,
+          element: <Checkers />,
         },
         {
           path: '/privacy',
