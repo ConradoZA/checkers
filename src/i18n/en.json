@@ -11,5 +11,15 @@
   },
   "footer": {
     "privacy": "Privacy"
+  },
+  "board": {
+    "turn": "Turn",
+    "play": "Play",
+    "noCapture": "Turns without captures",
+    "white": "White",
+    "black": "Black",
+    "whitePieces": "White pieces",
+    "blackPieces": "Black pieces",
+    "nextTurn": "Next Turn"
   }
 }

@@ -11,5 +11,15 @@
   },
   "footer": {
     "privacy": "Privacidad"
+  },
+  "board": {
+    "turn": "Turno",
+    "play": "Juegan",
+    "noCapture": "Turnos sin capturas",
+    "white": "Blancas",
+    "black": "Negras",
+    "whitePieces": "Piezas blancas",
+    "blackPieces": "Piezas negras",
+    "nextTurn": "Fin Turno"
   }
 }
