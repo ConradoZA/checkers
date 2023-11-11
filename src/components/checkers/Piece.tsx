@@ -18,13 +18,14 @@ const Piece: React.FC<PieceProps> = ({ piece }) => {
   const hasToCapture = movs.canPieceCapture(piece, boardPieces);
   const hasMovements = movs.hasMovements(piece, boardPieces);
 
-  const [{ canDrag, isDragging }, drag, dragPreview] = useDrag(
+  const myCanDrag = color === turnColor && hasMovements && (!areCaptures || hasToCapture);
+
+  const [{ isDragging }, drag, dragPreview] = useDrag(
     () => ({
       type: rank,
       item: { piece },
-      canDrag: color === turnColor && hasMovements && (!areCaptures || hasToCapture),
+      canDrag: myCanDrag,
       collect: (monitor) => ({
-        canDrag: monitor.canDrag(),
         isDragging: monitor.isDragging(),
       }),
     }),
@@ -69,7 +70,7 @@ const Piece: React.FC<PieceProps> = ({ piece }) => {
         (hasToCapture && color === turnColor
           ? ' tw-border-2 tw-border-dashed tw-border-rose-500'
           : '') +
-        (canDrag ? ' tw-cursor-grab' : ' tw-cursor-not-allowed')
+        (myCanDrag ? ' tw-cursor-grab' : ' tw-cursor-not-allowed')
       }
       id={piece.id}
       ref={drag}
