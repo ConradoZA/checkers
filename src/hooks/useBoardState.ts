@@ -4,27 +4,15 @@ import { FinishState, PieceColor, PieceType } from '../components/checkers/check
 import { useMovements } from './useMovements';
 
 const initialPositions: PiecePosition[] = [
-  // {
-  //   x: 1,
-  //   y: 0,
-  //   id: '01',
-  //   type: 'bm',
-  // },
   {
-    x: 3,
-    y: 6,
+    x: 1,
+    y: 0,
     id: '01',
     type: 'bm',
   },
-  // {
-  //   x: 3,
-  //   y: 0,
-  //   id: '03',
-  //   type: 'bm',
-  // },
   {
     x: 3,
-    y: 4,
+    y: 0,
     id: '03',
     type: 'bm',
   },
@@ -227,6 +215,7 @@ export interface Play {
   whiteQueensInField: number;
   blackQueensInField: number;
   positions: PiecePosition[];
+  finishedGame: FinishState;
 }
 
 export interface PiecePosition {
@@ -250,6 +239,7 @@ export const useBoardState = create<BoardStateSlice>()(
         blackMenInField: 15,
         blackQueensInField: 0,
         positions: initialPositions,
+        finishedGame: 'notFinished',
       },
     ],
     tempBoard: initialPositions,
@@ -324,6 +314,7 @@ export const useBoardState = create<BoardStateSlice>()(
           blackMenInField: blackMen,
           blackQueensInField: blackQueens,
           positions: newBoard,
+          finishedGame: get().getFinishResult(),
         };
 
         set((state) => {

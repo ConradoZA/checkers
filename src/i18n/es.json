@@ -5,11 +5,9 @@
     "goHome": "Ir al inicio",
     "unknown": "Error desconocido."
   },
-  "header": {
+  "navbar": {
     "checkers": "Damas",
-    "home": "Inicio"
-  },
-  "footer": {
+    "home": "Inicio",
     "privacy": "Privacidad"
   },
   "board": {
@@ -20,6 +18,10 @@
     "black": "Negras",
     "whitePieces": "Piezas blancas",
     "blackPieces": "Piezas negras",
-    "nextTurn": "Fin Turno"
+    "nextTurn": "Fin Turno",
+    "finished": "Fin de partida. Resultado:",
+    "draw": "Empate",
+    "whiteWins": "Gana Blancas",
+    "blackWins": "Gana Negras"
   }
 }

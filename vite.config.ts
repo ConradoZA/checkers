@@ -3,6 +3,7 @@ import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
   plugins: [react()],
+  base: '/checkers/',
   test: {
     globals: true,
     environment: 'happy-dom',

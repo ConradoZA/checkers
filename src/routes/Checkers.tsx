@@ -40,10 +40,10 @@ const Checkers: React.FC = () => {
 
   return (
     <div
-      className='tw-flex tw-h-screen tw-w-screen
+      className='tw-flex tw-min-h-screen tw-min-w-full
       tw-flex-col tw-content-center tw-justify-center
-      tw-bg-amber-50 tw-px-[6vmin]
-      dark:tw-bg-stone-700 md:tw-flex-row md:tw-pt-[8vh]'
+      tw-bg-amber-50 tw-px-[calc((100vw-85vmin)/2)]
+      dark:tw-bg-stone-700 md:tw-flex-row'
     >
       <div className='tw-flex tw-h-[8vmin] tw-w-[85vmin] tw-flex-row tw-justify-evenly tw-bg-white tw-text-[2.3vmin] md:tw-h-[85vmin] md:tw-w-[16vmin] md:tw-flex-col'>
         <p>
@@ -54,29 +54,23 @@ const Checkers: React.FC = () => {
           {wording.noCapture}: {25 - boardState.getTurnsUntilDraw()}
         </p>
         <p>
-          {wording.whitePieces}: {boardState.getWhiteMenNum()} / {boardState.getWhiteQueensNum()}
+          {wording.whitePieces}: &nbsp;{boardState.getWhiteMenNum()} /&nbsp;
+          {boardState.getWhiteQueensNum()}
           <br />
           {wording.blackPieces}: &nbsp;{boardState.getBlackMenNum()} /&nbsp;
           {boardState.getBlackQueensNum()}
         </p>
+        {boardState.getFinishResult() !== 'notFinished' && (
+          <p>
+            {wording.finished} {wording[boardState.getFinishResult()]}
+          </p>
+        )}
       </div>
       <DndProvider options={HTML5toTouch}>
         <div className='tw-grid tw-max-h-[85vmin] tw-max-w-[85vmin] tw-grid-cols-10 tw-gap-0'>
           {createBoard()}
         </div>
       </DndProvider>
-      {/* TODO: estilos flex, historial, deshacer cambios*/}
-      {/* <div>
-        <button
-          className='tw-rounded-md tw-bg-amber-800 tw-px-4 tw-py-2
-          tw-text-white tw-shadow-md tw-shadow-neutral-700
-          disabled:tw-cursor-not-allowed disabled:tw-bg-neutral-400
-          disabled:tw-text-neutral-800 disabled:tw-opacity-50 disabled:tw-shadow-none
-          dark:tw-shadow-neutral-800'
-        >
-          {wording.nextTurn}
-        </button>
-      </div> */}
     </div>
   );
 };

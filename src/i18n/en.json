@@ -5,11 +5,9 @@
     "goHome": "Return Home",
     "unknown": "Unknown error."
   },
-  "header": {
+  "navbar": {
     "checkers": "Checkers",
-    "home": "Home"
-  },
-  "footer": {
+    "home": "Home",
     "privacy": "Privacy"
   },
   "board": {
@@ -20,6 +18,10 @@
     "black": "Black",
     "whitePieces": "White pieces",
     "blackPieces": "Black pieces",
-    "nextTurn": "Next Turn"
+    "nextTurn": "Next Turn",
+    "finished": "Game finished. Result:",
+    "draw": "Draw",
+    "whiteWins": "White Wins",
+    "blackWins": "Black Wins"
   }
 }

@@ -1,18 +1,16 @@
 import Checkers from './routes/Checkers';
 import Home from './routes/Home';
+import Navbar from './components/navbar/Navbar';
 import NotFound from './routes/NotFound';
 import React from 'react';
-import TheFooter from './components/the-footer/TheFooter';
-import TheHeader from './components/the-header/TheHeader';
 import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { useTheme } from './hooks/useTheme';
 
 const Layout = () => {
   return (
     <>
-      <TheHeader />
+      <Navbar />
       <Outlet />
-      <TheFooter />
     </>
   );
 };

@@ -17,8 +17,10 @@ const Piece: React.FC<PieceProps> = ({ piece }) => {
   const areCaptures = movs.areAnyCapture(color, boardPieces);
   const hasToCapture = movs.canPieceCapture(piece, boardPieces);
   const hasMovements = movs.hasMovements(piece, boardPieces);
+  const isGameFinished = board.getFinishResult() !== 'notFinished';
 
-  const myCanDrag = color === turnColor && hasMovements && (!areCaptures || hasToCapture);
+  const myCanDrag =
+    color === turnColor && hasMovements && (!areCaptures || hasToCapture) && !isGameFinished;
 
   const [{ isDragging }, drag, dragPreview] = useDrag(
     () => ({
@@ -29,7 +31,7 @@ const Piece: React.FC<PieceProps> = ({ piece }) => {
         isDragging: monitor.isDragging(),
       }),
     }),
-    [hasToCapture, turnColor],
+    [hasToCapture, turnColor, isGameFinished],
   );
 
   const generalStyles = `tw-z-10 tw-relative tw-mx-auto tw-mt-[10%] tw-h-[80%] tw-w-[80%] 
