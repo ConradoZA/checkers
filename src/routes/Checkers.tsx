@@ -40,15 +40,19 @@ const Checkers: React.FC = () => {
 
   return (
     <div
-      className='tw-flex tw-min-h-screen tw-min-w-full
+      className='tw-flex tw-min-h-screen tw-min-w-[100vw]
       tw-flex-col tw-content-center tw-justify-center
       tw-bg-amber-50 tw-px-[calc((100vw-85vmin)/2)]
-      dark:tw-bg-stone-700 md:tw-flex-row'
+      dark:tw-bg-stone-700 md:tw-flex-row md:tw-px-[calc((100vw-100vmin)/2)] md:tw-py-[calc((100vh-85vmin)/2)]'
     >
-      <div className='tw-flex tw-h-[8vmin] tw-w-[85vmin] tw-flex-row tw-justify-evenly tw-bg-white tw-text-[2.3vmin] md:tw-h-[85vmin] md:tw-w-[16vmin] md:tw-flex-col'>
+      <div className='tw-flex tw-h-[8vmin] tw-w-[85vmin] tw-flex-row tw-justify-evenly tw-border tw-border-orange-950 tw-bg-white tw-px-1 tw-text-[2vmin] md:tw-h-[85vmin] md:tw-w-[15vmin] md:tw-flex-col'>
         <p>
-          {wording.turn}: {boardState.getTurnNumber()} <br />
-          {wording.play}: {boardState.getTurnColor() === 'white' ? wording.white : wording.black}
+          {wording.turn}: <span className='tw-font-bold'>{boardState.getTurnNumber()}</span>
+          <br />
+          {wording.play}:&nbsp;
+          <span className='tw-font-bold'>
+            {boardState.getTurnColor() === 'white' ? wording.white : wording.black}
+          </span>
         </p>
         <p>
           {wording.noCapture}: {25 - boardState.getTurnsUntilDraw()}
