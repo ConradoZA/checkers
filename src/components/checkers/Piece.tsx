@@ -41,13 +41,13 @@ const Piece: React.FC<PieceProps> = ({ piece }) => {
 
   const innerPiece: JSX.Element = (
     <div
-      className={`tw-ml-[1px] tw-mt-[1px] tw-h-[90%] tw-w-[90%] tw-rounded-full tw-border-2 ${
+      className={`tw-h-[90%] tw-w-[90%] tw-rounded-full tw-border-2 md:tw-ml-[1px] md:tw-mt-[1px] ${
         color === 'white' ? 'tw-border-amber-400' : 'tw-border-red-950'
       }`}
     >
       {rank === 'queen' && (
         <div
-          className={`tw-text-center tw-text-4xl tw-leading-[2.8rem] ${
+          className={`tw-text-center tw-text-[4vmin] tw-leading-none ${
             color === 'white' ? 'tw-text-neutral-600' : 'tw-text-neutral-400'
           }`}
         >
