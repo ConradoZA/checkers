@@ -47,7 +47,7 @@ const Piece: React.FC<PieceProps> = ({ piece }) => {
     >
       {rank === 'queen' && (
         <div
-          className={`tw-text-center tw-text-[4vmin] tw-leading-none ${
+          className={`tw-text-center tw-text-[4vmin] tw-leading-none sm:tw-leading-tight ${
             color === 'white' ? 'tw-text-neutral-600' : 'tw-text-neutral-400'
           }`}
         >
