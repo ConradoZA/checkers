@@ -8,7 +8,8 @@
   "navbar": {
     "checkers": "Checkers",
     "home": "Home",
-    "privacy": "Privacy"
+    "privacy": "Privacy",
+    "reset": "Reset Game"
   },
   "board": {
     "turn": "Turn",

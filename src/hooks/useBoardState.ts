@@ -187,10 +187,7 @@ const initialPositions: PiecePosition[] = [
 ];
 
 interface BoardStateSlice {
-  presentTurn: number;
-  maxMovsWithoutCapture: 25;
-  history: Play[];
-  tempBoard: PiecePosition[];
+  data: Data;
   getTurn: (turn: number) => Play;
   getBoardState: () => PiecePosition[];
   findPieceById: (id: string) => PiecePosition | undefined;
@@ -204,6 +201,15 @@ interface BoardStateSlice {
   getBlackQueensNum: () => number;
   getFinishResult: () => FinishState;
   setBoardState: (newPiece: PiecePosition, newBoard: PiecePosition[]) => void;
+  restartBoard: () => void;
+  reloadBoard: (data: Data) => void;
+}
+
+interface Data {
+  presentTurn: number;
+  maxMovsWithoutCapture: 25;
+  history: Play[];
+  tempBoard: PiecePosition[];
 }
 
 export interface Play {
@@ -224,29 +230,32 @@ export interface PiecePosition {
   id: string;
   type: PieceType;
 }
+const initialState: Data = {
+  presentTurn: 1,
+  maxMovsWithoutCapture: 25,
+  history: [
+    {
+      turnNum: 0,
+      turnColor: 'black',
+      movementsWithoutCapture: 0,
+      whiteMenInField: 15,
+      whiteQueensInField: 0,
+      blackMenInField: 15,
+      blackQueensInField: 0,
+      positions: initialPositions,
+      finishedGame: 'notFinished',
+    },
+  ],
+  tempBoard: initialPositions,
+};
 
 export const useBoardState = create<BoardStateSlice>()(
   immer((set, get) => ({
-    presentTurn: 1,
-    maxMovsWithoutCapture: 25,
-    history: [
-      {
-        turnNum: 0,
-        turnColor: 'black',
-        movementsWithoutCapture: 0,
-        whiteMenInField: 15,
-        whiteQueensInField: 0,
-        blackMenInField: 15,
-        blackQueensInField: 0,
-        positions: initialPositions,
-        finishedGame: 'notFinished',
-      },
-    ],
-    tempBoard: initialPositions,
+    data: initialState,
 
-    getTurn: (turn) => get().history[turn],
+    getTurn: (turn) => get().data.history[turn],
 
-    getBoardState: () => get().tempBoard,
+    getBoardState: () => get().data.tempBoard,
 
     findPieceById: (id) =>
       get()
@@ -258,32 +267,32 @@ export const useBoardState = create<BoardStateSlice>()(
         .getBoardState()
         .find((p) => p.x === x && p.y === y),
 
-    getTurnNumber: () => get().presentTurn,
+    getTurnNumber: () => get().data.presentTurn,
 
-    getTurnColor: () => (get().presentTurn % 2 === 0 ? 'black' : 'white'),
+    getTurnColor: () => (get().data.presentTurn % 2 === 0 ? 'black' : 'white'),
 
     getTurnsUntilDraw: () =>
-      get().maxMovsWithoutCapture - get().getTurn(get().presentTurn - 1).movementsWithoutCapture,
+      get().data.maxMovsWithoutCapture -
+      get().getTurn(get().data.presentTurn - 1).movementsWithoutCapture,
 
-    getWhiteMenNum: () => get().getTurn(get().presentTurn - 1).whiteMenInField,
+    getWhiteMenNum: () => get().getTurn(get().data.presentTurn - 1).whiteMenInField,
+    getBlackMenNum: () => get().getTurn(get().data.presentTurn - 1).blackMenInField,
 
-    getBlackMenNum: () => get().getTurn(get().presentTurn - 1).blackMenInField,
+    getWhiteQueensNum: () => get().getTurn(get().data.presentTurn - 1).whiteQueensInField,
 
-    getWhiteQueensNum: () => get().getTurn(get().presentTurn - 1).whiteQueensInField,
-
-    getBlackQueensNum: () => get().getTurn(get().presentTurn - 1).blackQueensInField,
+    getBlackQueensNum: () => get().getTurn(get().data.presentTurn - 1).blackQueensInField,
 
     getFinishResult: () => {
       if (get().getTurnsUntilDraw() <= 0) {
         return 'draw';
       } else if (
-        get().getTurn(get().presentTurn - 1).blackMenInField <= 2 &&
-        get().getTurn(get().presentTurn - 1).blackQueensInField < 1
+        get().getTurn(get().data.presentTurn - 1).blackMenInField <= 2 &&
+        get().getTurn(get().data.presentTurn - 1).blackQueensInField < 1
       ) {
         return 'whiteWins';
       } else if (
-        get().getTurn(get().presentTurn - 1).whiteMenInField <= 2 &&
-        get().getTurn(get().presentTurn - 1).whiteQueensInField < 1
+        get().getTurn(get().data.presentTurn - 1).whiteMenInField <= 2 &&
+        get().getTurn(get().data.presentTurn - 1).whiteQueensInField < 1
       ) {
         return 'blackWins';
       } else {
@@ -294,7 +303,7 @@ export const useBoardState = create<BoardStateSlice>()(
     setBoardState: (newPiece, newBoard) => {
       const hasCaptured = newBoard.length < get().getBoardState().length;
       set((state) => {
-        state.tempBoard = newBoard;
+        state.data.tempBoard = newBoard;
       });
 
       if (!hasCaptured || !useMovements.getState().canPieceCapture(newPiece, newBoard)) {
@@ -318,11 +327,25 @@ export const useBoardState = create<BoardStateSlice>()(
         };
 
         set((state) => {
-          state.presentTurn = get().getTurnNumber() + 1;
-          state.history.push(newPlay);
-          state.tempBoard = newBoard;
+          state.data.presentTurn = get().getTurnNumber() + 1;
+          state.data.history.push(newPlay);
+          state.data.tempBoard = newBoard;
         });
+        localStorage.setItem('damas', JSON.stringify(get().data));
       }
+    },
+
+    restartBoard: () => {
+      set((state) => {
+        state.data = initialState;
+      });
+      localStorage.setItem('damas', JSON.stringify(get().data));
+    },
+
+    reloadBoard: (data) => {
+      set((state) => {
+        state.data = data;
+      });
     },
   })),
 );

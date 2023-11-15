@@ -8,7 +8,8 @@
   "navbar": {
     "checkers": "Damas",
     "home": "Inicio",
-    "privacy": "Privacidad"
+    "privacy": "Privacidad",
+    "reset": "Reiniciar Partida"
   },
   "board": {
     "turn": "Turno",
